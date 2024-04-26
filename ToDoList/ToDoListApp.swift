@@ -10,11 +10,17 @@ import SwiftData
 
 @main
 struct ToDoListApp: App {
-    @StateObject private var data = Data()
+    @StateObject private var data = EventData()
     
     var body: some Scene {
         WindowGroup {
             EventList(data: data)
+                .task {
+                    data.load()
+                }
+                .onChange(of: data.events, initial: false, {
+                    data.save()
+                })
         }
     }
 }

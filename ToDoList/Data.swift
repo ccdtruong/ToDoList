@@ -72,7 +72,7 @@ enum Period: String, CaseIterable, Identifiable{
     var name:String{self.rawValue}
 }
 
-class Data: ObservableObject {
+class EventData: ObservableObject {
     @Published var events: [Event] = [
             Event(symbol: "gift.fill",
                   title: "Maya's Birthday",
@@ -151,6 +151,7 @@ class Data: ObservableObject {
                   startDate: Date(timeIntervalSinceNow: 60 * 60 * 24 * 10),
                   endDate: Date(timeIntervalSinceNow: 60 * 60 * 24 * 17)),
         ]
+    
     func addEvent(_ event: Event){
         events.append(event)
     }
@@ -192,5 +193,32 @@ class Data: ObservableObject {
                 
             }
         )
+    }
+    
+    private static func getFileUrl()throws -> URL {
+        FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+            .appendingPathComponent("events.data")
+    }
+    
+    func load() {
+        do{
+            let fileUrl = try EventData.getFileUrl()
+            let data = try Data(contentsOf: fileUrl)
+            
+            events = try JSONDecoder().decode([Event].self, from: data)
+        } catch {
+            print("Fail to Load from file.")
+        }
+    }
+    
+    func save() {
+        do{
+            let fileUrl = try EventData.getFileUrl()
+            let data = try JSONEncoder().encode(events)
+            
+            try data.write(to: fileUrl, options: [.atomic, .completeFileProtection])
+        } catch {
+            print("Unable to save.")
+        }
     }
 }

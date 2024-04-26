@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct EventList: View {
-    @ObservedObject var data: Data
+    @ObservedObject var data: EventData
     @State private var newEvent = Event()
     @State private var isAddingEvent = false
     @State private var selection: Event?
@@ -77,5 +77,5 @@ struct EventList: View {
 }
 
 #Preview {
-    return EventList(data: Data())
+    return EventList(data: EventData())
 }
