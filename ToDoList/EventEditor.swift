@@ -43,17 +43,30 @@ struct EventEditor: View {
                     }
                 }
                 
-                Text(event.title)
+                TextField("New Event", text: $event.title)
+                    .font(.title2)
             }
-            
-            Text("From: " + event.startDate.formatted())
-            Text("To: " + event.endDate.formatted())
-            
+            VStack{
+                HStack{
+                    Text("From: ")
+                        .font(.caption)
+                    DatePicker("From", selection: $event.startDate)
+                        .labelsHidden()
+                        .listRowSeparator(.hidden)
+                }
+                HStack{
+                    Text("To: ")
+                        .font(.caption)
+                    DatePicker("To", selection: $event.endDate)
+                        .labelsHidden()
+                        .listRowSeparator(.hidden)
+                }
+            }
             
             Text("Task")
                 .fontWeight(.bold)
-            ForEach(event.tasks) { task in
-                
+            ForEach($event.tasks) { $task in
+                TaskRow(task: $task)
             }
         }
     }
