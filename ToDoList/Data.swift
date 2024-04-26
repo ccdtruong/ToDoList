@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftUI
 //define symbol struct
 struct EventSymbol{
     var symbolNames = [
@@ -62,10 +63,13 @@ struct EventSymbol{
 
 //define enum Period
 
-enum Period: String{
+enum Period: String, CaseIterable, Identifiable{
     case past = "Past"
     case current = "Current"
     case future = "Future"
+    
+    var id:String{self.rawValue}
+    var name:String{self.rawValue}
 }
 
 class Data: ObservableObject {
@@ -89,7 +93,7 @@ class Data: ObservableObject {
                   startDate: Date(timeIntervalSinceNow: 60 * 60 * 22),
                   endDate: Date(timeIntervalSinceNow: 60 * 60 * 25)),
             
-            Event(symbol: "heart.toDo.square.fill",
+            Event(symbol: "heart.square.fill",
                   title: "Health Check-up",
                   tasks: [EventTask(toDo: "Bring medical ID"),
                           EventTask(toDo: "Record heart rate data"),
@@ -147,4 +151,22 @@ class Data: ObservableObject {
                   startDate: Date(timeIntervalSinceNow: 60 * 60 * 24 * 10),
                   endDate: Date(timeIntervalSinceNow: 60 * 60 * 24 * 17)),
         ]
+    
+    func sortEvents(period: Period) ->Binding<[Event]>
+    {
+        Binding<[Event]> (
+            get: {
+                self.events
+                    .filter{ $0.period == period}
+                    .sorted{ $0.startDate < $1.startDate}
+            },
+            set: { events in
+                for event in events {
+                    if let index = self.events.firstIndex(where: {$0.id == event.id}){
+                        self.events[index] = event
+                    }
+                }
+            }
+        )
+    }
 }

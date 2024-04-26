@@ -24,18 +24,18 @@ struct Event: Identifiable, Hashable, Codable{
         else {
             return .future
         }
-        var example = Event(
-            symbol: "case.fill",
-            title: "Sayulita Trip",
-            tasks: [
-                EventTask(toDo: "Buy plane tickets"),
-                EventTask(toDo: "Get a new bathing suit"),
-                EventTask(toDo: "Find an airbnb"),
-            ],
-            startDate: Date(timeIntervalSinceNow: 60 * 60 * 24 * 365),
-            endDate: Date(timeIntervalSinceNow: 60 * 60 * 24 * 369))
-        
-        var delete = Event(symbol: "trash")
-
     }
+    static var example = Event(
+        symbol: "case.fill",
+        title: "Sayulita Trip",
+        tasks: [
+            EventTask(toDo: "Buy plane tickets"),
+            EventTask(toDo: "Get a new bathing suit"),
+            EventTask(toDo: "Find an airbnb"),
+        ],
+        startDate: Date(timeIntervalSinceNow: 60 * 60 * 24 * 365),
+        endDate: Date(timeIntervalSinceNow: 60 * 60 * 24 * 369))
+    
+    static var delete = Event(symbol: "trash")
+    
 }

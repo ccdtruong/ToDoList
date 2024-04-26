@@ -18,6 +18,8 @@
 		291DC4162BDAA93600D519F2 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 291DC4152BDAA93600D519F2 /* Event.swift */; };
 		291DC4182BDAABBD00D519F2 /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 291DC4172BDAABBD00D519F2 /* Data.swift */; };
 		291DC41A2BDAABF300D519F2 /* EventTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 291DC4192BDAABF300D519F2 /* EventTask.swift */; };
+		291DC41C2BDAB61300D519F2 /* EventList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 291DC41B2BDAB61200D519F2 /* EventList.swift */; };
+		293DB0AA2BDABFB50039A091 /* EventRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 293DB0A92BDABFB50039A091 /* EventRow.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,6 +54,8 @@
 		291DC4152BDAA93600D519F2 /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		291DC4172BDAABBD00D519F2 /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
 		291DC4192BDAABF300D519F2 /* EventTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventTask.swift; sourceTree = "<group>"; };
+		291DC41B2BDAB61200D519F2 /* EventList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventList.swift; sourceTree = "<group>"; };
+		293DB0A92BDABFB50039A091 /* EventRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventRow.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,6 +108,8 @@
 			children = (
 				291DC3E72BDA53B400D519F2 /* ToDoListApp.swift */,
 				291DC3E92BDA53B400D519F2 /* ContentView.swift */,
+				291DC41B2BDAB61200D519F2 /* EventList.swift */,
+				293DB0A92BDABFB50039A091 /* EventRow.swift */,
 				291DC3EB2BDA53B400D519F2 /* Item.swift */,
 				291DC4152BDAA93600D519F2 /* Event.swift */,
 				291DC4192BDAABF300D519F2 /* EventTask.swift */,
@@ -269,8 +275,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				291DC41C2BDAB61300D519F2 /* EventList.swift in Sources */,
 				291DC4162BDAA93600D519F2 /* Event.swift in Sources */,
 				291DC4182BDAABBD00D519F2 /* Data.swift in Sources */,
+				293DB0AA2BDABFB50039A091 /* EventRow.swift in Sources */,
 				291DC3EA2BDA53B400D519F2 /* ContentView.swift in Sources */,
 				291DC41A2BDAABF300D519F2 /* EventTask.swift in Sources */,
 				291DC3EC2BDA53B400D519F2 /* Item.swift in Sources */,
