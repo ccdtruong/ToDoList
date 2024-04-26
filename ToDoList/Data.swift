@@ -151,6 +151,13 @@ class Data: ObservableObject {
                   startDate: Date(timeIntervalSinceNow: 60 * 60 * 24 * 10),
                   endDate: Date(timeIntervalSinceNow: 60 * 60 * 24 * 17)),
         ]
+    func addEvent(_ event: Event){
+        events.append(event)
+    }
+    
+    func deleteEvent(_ event: Event){
+        events.removeAll(where: {$0.id == event.id})
+    }
     
     func sortEvents(period: Period) -> Binding<[Event]> {
             Binding<[Event]>(

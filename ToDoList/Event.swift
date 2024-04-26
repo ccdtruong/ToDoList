@@ -9,7 +9,7 @@ import Foundation
 
 struct Event: Identifiable, Hashable, Codable{
     var id = UUID()
-    var symbol: String = ""
+    var symbol: String = "plus"
     var title = ""
     var tasks = [EventTask(toDo: "")]
     var startDate = Date.now

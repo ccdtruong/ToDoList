@@ -17,7 +17,7 @@ struct EventEditor: View {
                 Button(action: {
                     isPickingSymbol = true
                 }, label: {
-                    Image(systemName:event.symbol)
+                    Image(systemName:event.symbol.isEmpty ? "Plus" : event.symbol)
                         .foregroundColor(.black)
                 })
                 .popover(isPresented: $isPickingSymbol, arrowEdge: .bottom){
@@ -67,6 +67,13 @@ struct EventEditor: View {
                 .fontWeight(.bold)
             ForEach($event.tasks) { $task in
                 TaskRow(task: $task)
+            }
+            //add new task
+            Button{
+                let newTask = EventTask(toDo: "", isComplete: false)
+                event.tasks.append(newTask)
+            } label: {
+                Image(systemName: "plus")
             }
         }
     }
