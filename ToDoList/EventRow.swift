@@ -22,6 +22,8 @@ struct EventRow: View {
                 }
             } icon: {
                 Image(systemName: event.symbol)
+                    .foregroundColor(.black)
+                    .imageScale(.large)
             }
             Spacer()
         }

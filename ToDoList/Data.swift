@@ -9,7 +9,7 @@ import Foundation
 import SwiftUI
 //define symbol struct
 struct EventSymbol{
-    var symbolNames = [
+    static var symbolNames = [
                 "house.fill",
                 "ticket.fill",
                 "gamecontroller.fill",
