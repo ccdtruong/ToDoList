@@ -21,11 +21,20 @@ struct EventList: View {
                             EventRow(event: event)
                                 .tag(event)
                         }
+                    }, header: {
+                        Text(period.name)
+                            .font(.callout)
+                            .fontWeight(.bold)
+                            .foregroundStyle(.secondary)
                     })
+                    .disabled(data.sortEvents(period: period).isEmpty)
                 }
             }
         }detail: {
-            Text("detail")
+            if let event = selection
+            {
+                EventEditor(event: data.convertToBinding(event: event))
+            }
         }
     }
 }

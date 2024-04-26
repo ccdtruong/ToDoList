@@ -19,7 +19,7 @@ struct Event: Identifiable, Hashable, Codable{
             return .past
         }
         else if startDate <= Date.now && endDate > Date.now {
-            return .current
+            return .doing
         }
         else {
             return .future

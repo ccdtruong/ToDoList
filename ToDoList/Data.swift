@@ -65,7 +65,7 @@ struct EventSymbol{
 
 enum Period: String, CaseIterable, Identifiable{
     case past = "Past"
-    case current = "Current"
+    case doing = "Doing"
     case future = "Future"
     
     var id:String{self.rawValue}
@@ -152,20 +152,37 @@ class Data: ObservableObject {
                   endDate: Date(timeIntervalSinceNow: 60 * 60 * 24 * 17)),
         ]
     
-    func sortEvents(period: Period) ->Binding<[Event]>
-    {
-        Binding<[Event]> (
-            get: {
-                self.events
-                    .filter{ $0.period == period}
-                    .sorted{ $0.startDate < $1.startDate}
-            },
-            set: { events in
-                for event in events {
-                    if let index = self.events.firstIndex(where: {$0.id == event.id}){
-                        self.events[index] = event
+    func sortEvents(period: Period) -> Binding<[Event]> {
+            Binding<[Event]>(
+                get: {
+                    self.events
+                        .filter { $0.period == period}
+                        .sorted { $0.startDate < $1.startDate }
+                },
+                set: { events in
+                    for event in events {
+                        if let index = self.events.firstIndex(where: { $0.id == event.id }) {
+                            self.events[index] = event
+                        }
                     }
                 }
+            )
+        }
+    //convert Event to Binding<Event>
+    func convertToBinding(event: Event) ->Binding<Event>{
+        Binding<Event>(
+            get: {
+                guard let index = self.events.firstIndex(where: {$0.id == event.id}) else{
+                    return Event()
+                }
+                return self.events[index]
+            },
+            set: { event in
+                guard let index = self.events.firstIndex(where: {$0.id == event.id}) else {
+                    return
+                }
+                self.events[index] = event
+                
             }
         )
     }
